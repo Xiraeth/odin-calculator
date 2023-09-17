@@ -1,6 +1,6 @@
 :root {
-  --calculator-dimensions: 700px;
-  --button-dimensions: calc(var(--calculator-dimensions) / 5.6);
+  --calculator-dimensions: 500px;
+  --button-dimensions: calc(var(--calculator-dimensions) / 4.5);
 }
 
 body {
@@ -14,43 +14,56 @@ body {
 * {
   margin: 0;
   padding: 0;
+  font-size: 32px;
 }
 
 .calculator {
   width: var(--calculator-dimensions);
   height: calc(1.2 * var(--calculator-dimensions));
-  background-color: slategray;
-  border-radius: 30px;
+  background-color: rgb(54, 54, 54);
+  border-radius: 5px;
+  padding: 15px 0;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 3px;
 }
 
 .result {
-  width: 80%;
-  background-color: lavender;
+  width: 85%;
+  height: 60px;
+  letter-spacing: 10px;
+  background-color: rgb(166, 166, 182);
   display: flex;
   justify-content: end;
   align-items: center;
-  border-radius: 20px;
-  margin-top: 20px;
+  border-radius: 5px;
+  /* margin: 10px 0; */
+  margin-top: 5px;
   padding-right: 20px;
-  font-size: 3rem;
-  border: px solid black;
+  border: 5px solid black;
 }
 
 .clear {
+  background-color: crimson;
+  border: 3px solid black;
   height: 7%;
-  font-size: 2em;
-  flex-basis: 80%;
+  font-size: 0.8em;
+  flex-basis: 90%;
+}
+
+.clear:hover {
+  background-color: rgb(190, 17, 52);
+}
+
+.clear:active {
+  background-color: rgb(148, 13, 40);
 }
 
 button {
   width: var(--button-dimensions);
   height: var(--button-dimensions);
-  border-radius: 30px;
-  font-size: 4rem;
+  border-radius: 5px;
   outline: none;
   border: 1px solid black;
   background-color: lavender;
@@ -63,4 +76,27 @@ button:hover {
 
 button:active {
   background-color: rgb(153, 153, 168);
+}
+
+.number {
+  background-color: cadetblue;
+}
+
+.number:hover {
+  background-color: rgb(82, 137, 139);
+}
+.number:active {
+  background-color: rgb(70, 116, 117);
+}
+
+.ops {
+  background-color: tomato;
+}
+
+.ops:hover {
+  background-color: rgb(230, 87, 62);
+}
+
+.ops:active {
+  background-color: rgb(187, 71, 50);
 }

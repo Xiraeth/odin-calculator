@@ -2,7 +2,9 @@
 
 const buttons = document.querySelectorAll("button");
 const container = document.querySelector(".calculator");
-console.log(container);
+const result = document.querySelector(".result");
+const displayValue = Number(result.textContent);
+console.log(displayValue);
 
 function add(a, b) {
   return a + b;
@@ -32,3 +34,5 @@ function operate(num1, operator, num2) {
       return num1 / num2;
   }
 }
+
+function updateDisplay() {}
