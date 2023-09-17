@@ -1,3 +1,9 @@
+h1 {
+  text-align: center;
+  font-style: italic;
+  font-weight: lighter;
+}
+
 body {
   min-height: 100vh;
   overflow: hidden;
@@ -82,6 +88,7 @@ button:active {
   position: absolute;
   bottom: 0px;
   left: 0px;
+  margin: 0;
   width: 100%;
   height: 70px;
   display: flex;
