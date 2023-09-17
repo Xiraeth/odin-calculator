@@ -87,6 +87,7 @@ function updateDisplay() {
       nums[0] = result.textContent = operate(nums[0], operator, nums[1]);
       start = true;
       canCalc = false;
+      active = 0;
       nums[active] = Math.abs(nums[active]);
     }
 
@@ -112,5 +113,6 @@ function updateDisplay() {
       result.textContent = 0;
     }
     console.log(nums);
+    console.log(active);
   });
 }
