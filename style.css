@@ -34,17 +34,17 @@ body {
 
 .result {
   width: 85%;
-  height: 60px;
+  height: 80px;
   letter-spacing: 10px;
+  font-size: 1.5em;
+  border: 5px solid black;
+  border-radius: 5px;
+  margin-top: 5px;
+  padding-right: 20px;
   background-color: rgb(166, 166, 182);
   display: flex;
   justify-content: end;
   align-items: center;
-  border-radius: 5px;
-  /* margin: 10px 0; */
-  margin-top: 5px;
-  padding-right: 20px;
-  border: 5px solid black;
 }
 
 .clear {
@@ -70,6 +70,7 @@ button {
   outline: none;
   border: 1px solid black;
   background-color: lavender;
+  cursor: pointer;
 }
 
 button:hover {
@@ -91,14 +92,17 @@ button:active {
   background-color: rgb(70, 116, 117);
 }
 
-.ops {
+.ops,
+.equals {
   background-color: tomato;
 }
 
-.ops:hover {
+.ops:hover,
+.equals:hover {
   background-color: rgb(230, 87, 62);
 }
 
-.ops:active {
+.ops:active,
+.equals:active {
   background-color: rgb(187, 71, 50);
 }
