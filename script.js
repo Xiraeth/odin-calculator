@@ -71,7 +71,6 @@ function updateDisplay() {
       canSwitch = true;
       canCalc = true;
       nums[active] = +nums[active];
-      console.log(nums);
     }
 
     if (btn.classList.contains("ops")) {
@@ -82,20 +81,21 @@ function updateDisplay() {
       start = true;
       limit = 0;
       if (canSwitch) active = 1;
-      console.log(nums);
     }
 
     if (btn.classList.contains("equals") && active == 1 && !start) {
       nums[0] = result.textContent = operate(nums[0], operator, nums[1]);
       start = true;
       canCalc = false;
-      console.log(nums);
+      nums[active] = Math.abs(nums[active]);
     }
 
     if (btn.classList.contains(".dot")) {
     }
 
     if (btn.classList.contains("sign")) {
+      nums[active] = -nums[active];
+      result.textContent = -result.textContent;
     }
 
     if (btn.classList.contains("percent")) {
@@ -111,6 +111,6 @@ function updateDisplay() {
       nums[0] = nums[1] = 0;
       result.textContent = 0;
     }
-    console.log(btn.textContent);
+    console.log(nums);
   });
 }
