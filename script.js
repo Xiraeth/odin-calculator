@@ -37,12 +37,31 @@ function operate(num1, operator, num2) {
 
 function updateDisplay() {
   let operator = "";
+
+  // Checks whether we are already typing a number or just started
   let start = true;
+
   let nums = [0, 0];
+
+  // Is the index for nums
   let active = 0;
+
   let canSwitch = false;
+
+  // Sets a limit to how many digits a number can have
   let limit = 0;
+
+  // Decides whether pressing an operation button is going to calculate the result (if one exists)
   let canCalc = true;
+
+  // Decides whether we can swap signs
+  let canSwap = false;
+
+  // Checks whether we are writing on the decimal part
+  let onDecimal = false;
+
+  // Checks how many commas we have in our number (cant be more than one)
+  let count = 0;
 
   container.addEventListener("click", (e) => {
     const btn = e.target.closest("button");
@@ -53,9 +72,12 @@ function updateDisplay() {
       start = true;
       nums = [0, 0];
       active = 0;
+      onDecimal = false;
+      count = 0;
       canSwitch = false;
       limit = 0;
       canCalc = true;
+      canSwap = false;
     }
 
     if (btn.classList.contains("number") && limit < 10) {
@@ -68,6 +90,7 @@ function updateDisplay() {
         result.textContent = nums[active];
       }
       limit++;
+      canSwap = true;
       canSwitch = true;
       canCalc = true;
       nums[active] = +nums[active];
@@ -77,9 +100,12 @@ function updateDisplay() {
       if (active == 1 && canCalc) {
         nums[0] = result.textContent = operate(nums[0], operator, nums[1]);
       }
+      count = 0;
+      canSwap = false;
       operator = btn.textContent;
       start = true;
       limit = 0;
+      onDecimal = false;
       if (canSwitch) active = 1;
     }
 
@@ -87,14 +113,17 @@ function updateDisplay() {
       nums[0] = result.textContent = operate(nums[0], operator, nums[1]);
       start = true;
       canCalc = false;
+      canSwap = true;
       active = 0;
-      nums[active] = Math.abs(nums[active]);
+      count = 0;
     }
 
-    if (btn.classList.contains(".dot")) {
+    if (btn.classList.contains("dot") && count < 1) {
+      result.textContent += btn.textContent;
+      count++;
     }
 
-    if (btn.classList.contains("sign")) {
+    if (btn.classList.contains("sign") && canSwap) {
       nums[active] = -nums[active];
       result.textContent = -result.textContent;
     }
@@ -105,6 +134,8 @@ function updateDisplay() {
     if (btn.classList.contains("clear")) {
       console.clear();
       operator = "";
+      onDecimal = false;
+      count = 0;
       limit = 0;
       active = 0;
       start = true;
