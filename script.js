@@ -119,6 +119,7 @@ function updateDisplay() {
     }
 
     if (btn.classList.contains("dot") && count < 1) {
+      nums[active] += btn.textContent;
       result.textContent += btn.textContent;
       count++;
     }
@@ -128,7 +129,7 @@ function updateDisplay() {
       result.textContent = -result.textContent;
     }
 
-    if (btn.classList.contains("percent")) {
+    if (btn.classList.contains("delete")) {
     }
 
     if (btn.classList.contains("clear")) {
