@@ -2,7 +2,7 @@
 
 const container = document.querySelector(".container");
 const result = document.querySelector("#result");
-
+/*
 updateDisplay();
 
 function add(a, b) {
@@ -148,3 +148,4 @@ function updateDisplay() {
     console.log(active);
   });
 }
+*/
