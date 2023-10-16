@@ -1,21 +1,19 @@
 "use strict";
 
 const container = document.querySelector(".container");
-const previousResult = document.querySelector(".previousResult");
 const result = document.querySelector(".result");
+const operand = document.querySelector(".operand");
 const clearButton = document.querySelector(".clear");
 const equalsButton = document.querySelector(".equals");
-const dotButton = document.querySelector(".dot");
 const deleteButton = document.querySelector(".delete");
-const signButton = document.querySelector(".sign");
+let operator;
 
 class Calculator {
-  firstOperand = 0;
-  secondOperand = 0;
-
-  constructor(firstOperand, secondOperand) {
-    this.firstOperand = firstOperand;
-    this.secondOperand = secondOperand;
+  constructor(operand, operator, result) {
+    this.operand = operand;
+    this.operator = operator;
+    this.result = result;
+    this.clear();
   }
 
   operate(a, op, b) {
@@ -31,46 +29,38 @@ class Calculator {
     }
   }
 
-  clearDisplay() {
-    result.textContent = 0;
-    previousResult.textContent = 0;
+  updateDisplay() {
+    result.textContent = this.result;
+    operand.textContent = this.operand;
   }
 
-  clearCalculator() {
-    result.textContent = 0;
-    previousResult.textContent = 0;
-    this.firstOperand = 0;
-    this.secondOperand = 0;
-  }
+  clear = () => {
+    this.result = "0";
+    this.operand = "0";
+    console.clear();
+    this.updateDisplay();
+  };
 
-  btnPress(btn) {
+  numberPress(btn) {
     if (!btn) return;
 
-    if (result.textContent == "0" && btn.classList.contains("number")) {
-      result.textContent = btn.textContent;
-      previousResult.textContent = btn.textContent;
-    } else if (!result.textContent == "0" && btn.classList.contains("number")) {
-      result.textContent += btn.textContent;
-      previousResult.textContent += btn.textContent;
-    }
+    if (this.operand.includes(".") && btn.textContent == ".") return;
+    if (this.operand == "0") this.operand = btn.textContent;
+    else this.operand += btn.textContent;
   }
 
-  operatorButtonPress(op) {
-    if (!op) return;
-  }
+  operatorButtonPress() {}
 
-  deleteButtonPress() {}
+  delete() {}
 
-  dotButtonPress() {}
-
-  equalsButtonPress() {}
+  equals() {}
 }
 
-const calc = new Calculator();
+const calc = new Calculator(operand.textContent, operator, result.textContent);
 
 container.addEventListener("click", (e) => {
-  calc.btnPress(e.target.closest("button"));
-  calc.operatorButtonPress(e.target.closest(".ops"));
+  calc.numberPress(e.target.closest(".number"));
+  calc.updateDisplay();
 });
 
-clearButton.addEventListener("click", calc.clearCalculator);
+clearButton.addEventListener("click", calc.clear);
