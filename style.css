@@ -59,6 +59,7 @@ h1 {
   grid-column: span 4;
   border-radius: 10px;
   padding: 10px;
+  height: 100px;
   align-self: center;
   display: flex;
   flex-direction: column;
