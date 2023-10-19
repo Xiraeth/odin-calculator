@@ -50,6 +50,7 @@ class Calculator {
   };
 
   numberPress(btn) {
+    if (operator === null) return;
     if (this.operand.includes(".") && btn.textContent == ".") return;
     if (this.operand == "0") this.operand = btn.textContent;
     else this.operand += btn.textContent;
@@ -87,9 +88,8 @@ class Calculator {
       operator,
       Number(this.operand)
     );
-    operator = undefined;
+    operator = null;
     this.operand = "";
-    operator = op.textContent;
   }
 
   swapSign() {
