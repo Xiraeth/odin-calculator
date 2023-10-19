@@ -31,13 +31,19 @@ class Calculator {
   }
 
   updateDisplay() {
-    result.textContent = this.result;
+    if (!operator) {
+      result.textContent = this.result;
+      operand.textContent = this.operand;
+      return;
+    }
+    result.textContent = this.result + " " + operator;
     operand.textContent = this.operand;
   }
 
   clear = () => {
     this.result = "0";
     this.operand = "0";
+    operator = undefined;
     console.clear();
     this.updateDisplay();
   };
@@ -49,19 +55,40 @@ class Calculator {
   }
 
   operatorButtonPress(op) {
-    operator = op.textContent;
-    if (this.operand == "") return;
+    if (this.operand == "") {
+      operator = op.textContent;
+      return;
+    }
     if (this.result == 0) {
       this.result = this.operand;
+      operator = op.textContent;
       this.operand = "";
       return;
     }
+
+    this.result = this.operate(
+      Number(this.result),
+      operator,
+      Number(this.operand)
+    );
     this.operand = "";
+    operator = op.textContent;
   }
 
-  delete() {}
+  delete() {
+    this.operand = this.operand.slice(0, -1);
+  }
 
-  equals() {}
+  equals() {
+    if (this.operand == "" || operator == undefined) return;
+    this.result = this.operate(
+      Number(this.result),
+      operator,
+      Number(this.operand)
+    );
+    operator = undefined;
+    this.operand = "";
+  }
 }
 
 const calc = new Calculator(operand.textContent, operator, result.textContent);
@@ -76,8 +103,18 @@ numberButtons.forEach((button) => {
 operatorButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
     calc.operatorButtonPress(e.target);
-    calc.updateDisplay();
+    calc.updateDisplay(e.target);
   });
+});
+
+equalsButton.addEventListener("click", (e) => {
+  calc.equals();
+  calc.updateDisplay();
+});
+
+deleteButton.addEventListener("click", (e) => {
+  calc.delete();
+  calc.updateDisplay();
 });
 
 clearButton.addEventListener("click", calc.clear);
