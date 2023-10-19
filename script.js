@@ -89,6 +89,7 @@ class Calculator {
     );
     operator = undefined;
     this.operand = "";
+    operator = op.textContent;
   }
 
   swapSign() {
