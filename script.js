@@ -7,6 +7,7 @@ const operand = document.querySelector(".operand");
 const clearButton = document.querySelector(".clear");
 const equalsButton = document.querySelector(".equals");
 const deleteButton = document.querySelector(".delete");
+const swapSign = document.querySelector(".sign");
 let operator;
 
 class Calculator {
@@ -89,6 +90,12 @@ class Calculator {
     operator = undefined;
     this.operand = "";
   }
+
+  swapSign() {
+    if (this.operand == "") return;
+
+    this.operand = -1 * Number(this.operand);
+  }
 }
 
 const calc = new Calculator(operand.textContent, operator, result.textContent);
@@ -114,6 +121,11 @@ equalsButton.addEventListener("click", (e) => {
 
 deleteButton.addEventListener("click", (e) => {
   calc.delete();
+  calc.updateDisplay();
+});
+
+swapSign.addEventListener("click", () => {
+  calc.swapSign();
   calc.updateDisplay();
 });
 
