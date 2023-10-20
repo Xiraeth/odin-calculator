@@ -88,8 +88,9 @@ class Calculator {
       operator,
       Number(this.operand)
     );
+	this.operand = this.result;
+	this.result = '';
     operator = null;
-    this.operand = "";
   }
 
   swapSign() {
